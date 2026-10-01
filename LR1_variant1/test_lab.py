@@ -1,4 +1,3 @@
-"""py -m unittest -v — логика и реальные криптографические тесты на Windows."""
 import hashlib
 import os
 import tempfile
@@ -12,7 +11,6 @@ from wincrypto import WindowsCrypto
 
 
 class LogicCrypto:
-    """Только заглушка для тестов правил. В программе не используется."""
     def digest(self, text):
         return hashlib.sha256(text.encode()).hexdigest()[:32]
 

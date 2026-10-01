@@ -1,4 +1,3 @@
-"""Учётные записи, проверка паролей, сроков и зашифрованное хранилище."""
 import calendar
 import copy
 import hmac
@@ -52,10 +51,6 @@ def expired(user, moment=None):
 
 
 def validate(data):
-    """Наличие ADMIN — требуемая методичкой проверка расшифрования.
-
-    Дополнительно проверяем структуру, чтобы не открывать повреждённые данные.
-    """
     if not isinstance(data, dict) or data.get('version') != 1:
         raise ValueError('Некорректная версия базы.')
     users = data.get('users')
@@ -124,7 +119,6 @@ class Store:
                 os.unlink(temporary)
 
     def commit(self, mutation):
-        """При ошибке записи возвращаем состояние памяти к прежнему."""
         old = copy.deepcopy(self.data)
         try:
             mutation()

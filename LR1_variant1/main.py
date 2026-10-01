@@ -1,4 +1,3 @@
-"""ЛР №1, вариант 1. Запуск на Windows: py main.py."""
 import os
 from pathlib import Path
 import tkinter as tk
@@ -7,12 +6,11 @@ from tkinter import ttk, messagebox, simpledialog
 from model import Store, Session, expired
 from wincrypto import WindowsCrypto
 
-AUTHOR = 'Укажите свои ФИО и группу'  # Заполнить перед сдачей.
+AUTHOR = 'Ашаханов Ахмад Илèsович, группа ПИбд-42'
 DATA_PATH = Path(__file__).resolve().with_name('accounts.dat')
 
 
 class Fields(simpledialog.Dialog):
-    """Универсальная модальная форма; секретные поля всегда показывают *."""
     def __init__(self, parent, title, fields, note='', validate_values=None):
         self.fields, self.note, self.check = fields, note, validate_values
         self.inputs, self.result = {}, None

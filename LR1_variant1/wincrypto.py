@@ -1,7 +1,3 @@
-"""DES-ECB и MD4 через встроенный Microsoft CryptoAPI (Windows).
-
-Алгоритмы выбраны строго для учебного варианта 1.
-"""
 import ctypes as C
 import os
 from contextlib import contextmanager
@@ -71,11 +67,6 @@ class WindowsCrypto:
         return buf.raw
 
     def transform(self, data, phrase, salt, encrypt):
-        """Соль добавляется к фразе ДО получения ключа, а не к DES-блоку.
-
-        CryptDeriveKey получает MD4(salt || UTF8(phrase)). Соль хранится
-        в заголовке файла и позволяет восстановить тот же ключ при чтении.
-        """
         key = C.c_size_t()
         with self._hash(salt + phrase.encode('utf-8')) as hashed:
             self._call('CryptDeriveKey', self.provider, self.CALG_DES,
